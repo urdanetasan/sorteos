@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteo de Nombres</title>
+    <link rel="stylesheet" href="sorteo.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Realiza tu sorteo en línea!</h1>
+        <textarea id="names" placeholder="Introduce los nombres separados por comas..."></textarea>
+        <button onclick="runDraw()">Realizar Sorteo</button>
+        <div id="loading" class="loading hidden">
+            <div id="loading-icon" class="loading-icon"></div>
+        </div>
+        <div id="result" class="hidden"></div>
+    </div>
+
+    <script src="sorteo.js"></script>
+</body>
+</html>
