@@ -11,7 +11,9 @@ function runDraw() {
         return;
     }
 
-    const names = namesInput.split(',').map(name => name.trim().toLowerCase()).filter(name => name);
+    // Crear una lista con los nombres originales y en minúsculas para comparación
+    const names = namesInput.split(',').map(name => name.trim());
+    const lowerCaseNames = names.map(name => name.toLowerCase());
 
     if (names.length < 2) {
         resultDiv.textContent = "Se necesitan al menos dos nombres para el sorteo.";
@@ -24,11 +26,16 @@ function runDraw() {
     resultDiv.classList.add("hidden");
 
     setTimeout(() => {
-        // Verificar si "ramón" o "ramon" está en la lista
-        let winner = names.find(name => name === "ramón" || name === "ramon");
+        let winner;
+        const indexOfRamon = lowerCaseNames.findIndex(
+            name => name === "ramón" || name === "ramon"
+        );
 
-        // Si no está, elegir un ganador aleatorio
-        if (!winner) {
+        // Si "ramón" o "ramon" está presente, usar su índice para obtener la versión original
+        if (indexOfRamon !== -1) {
+            winner = names[indexOfRamon];
+        } else {
+            // Elegir un ganador aleatorio
             const randomIndex = Math.floor(Math.random() * names.length);
             winner = names[randomIndex];
         }
